@@ -61,3 +61,8 @@ Si tu avais installé/visité une ancienne version, fais : Chrome → Paramètre
 ## v1.1.1
 - « Terminer » arrête aussi les intervalles et le chrono général
 - Suppression du bouton « Pause / Reprendre » pendant l'entraînement et après « Terminer »
+
+
+## v1.1.2
+- Retour du bouton « Pause/Reprendre » pendant les intervalles uniquement
+- Toujours absent pendant l’échauffement et après « Terminer »

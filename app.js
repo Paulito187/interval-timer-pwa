@@ -348,40 +348,40 @@
   // --- Controls visibility
   function showWarmupControls(){
     ui.beginWorkoutBtn.hidden = false;
-    ui.toggleBtn.hidden = true;
-    ui.skipBtn.hidden = true;
+ui.skipBtn.hidden = true;
     ui.stopBtn.hidden = false;
     ui.endBtn.hidden = true;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = false;
     ui.toggleBtn.hidden = true;
     ui.toggleBtn.style.display = 'none';
+
   }
   function showRunningControls(){
     ui.beginWorkoutBtn.hidden = true;
-    ui.toggleBtn.hidden = true;
-    ui.skipBtn.hidden = false;
+ui.skipBtn.hidden = false;
     ui.stopBtn.hidden = false;
     ui.endBtn.hidden = true;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = false;
-    ui.toggleBtn.hidden = true;
-    ui.toggleBtn.style.display = 'none';
+    ui.toggleBtn.hidden = false;
+    ui.toggleBtn.style.display = '';
+
   }
   function showFinishControls(){
     ui.beginWorkoutBtn.hidden = true;
-    ui.toggleBtn.hidden = true;
-    ui.skipBtn.hidden = true;
+ui.skipBtn.hidden = true;
     ui.stopBtn.hidden = true;
     ui.endBtn.hidden = false;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = true;
     ui.toggleBtn.hidden = true;
     ui.toggleBtn.style.display = 'none';
+
   }
   function showRecapOnly(){
     ui.beginWorkoutBtn.hidden = true;
-    ui.toggleBtn.hidden = true; // après Terminer
+// après Terminer
     ui.skipBtn.hidden = true;
     ui.stopBtn.hidden = true;
     ui.endBtn.hidden = true;
@@ -389,6 +389,7 @@
     ui.endNowBtn.hidden = true;
     ui.toggleBtn.hidden = true;
     ui.toggleBtn.style.display = 'none';
+
   }
 
   // --- Actions
