@@ -235,7 +235,3 @@ input:focus,button:focus{outline:none; box-shadow: 0 0 0 3px rgba(96,165,250,.35
 .recap .v{font-weight:950; font-variant-numeric: tabular-nums}
 
 #toggleBtn{display:flex;align-items:center;justify-content:center;gap:10px}
-
-/* v1.1: séries infinies */
-.infWrap{display:inline-flex;align-items:center;gap:8px;margin-left:10px;font-size:14px;color:rgba(255,255,255,.78)}
-.infWrap input{width:18px;height:18px}

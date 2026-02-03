@@ -54,12 +54,5 @@ Si tu avais installé/visité une ancienne version, fais : Chrome → Paramètre
 
 
 ## v1.1
-- Stop → Retour aux paramètres
-- Séries Infini : boucle indéfiniment (Série x/∞, total = ∞)
-- Bouton Terminer pendant la séance (arrêt + récap)
-
-
-## v1.1-fix2
-- Pas de bouton Pause/Reprendre pendant l’échauffement
-- Mode Infini boucle correctement
-- Pas de bouton Pause/Reprendre une fois terminé (mode fini)
+- Stop → « Retour aux paramètres » (même action)
+- Ajout du bouton « Terminer » pendant la séance (arrête et affiche le récap)
