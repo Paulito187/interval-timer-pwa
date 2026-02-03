@@ -1,16 +1,25 @@
 {
   "name": "Interval Timer",
   "short_name": "Timer",
-  "start_url": "./index.html",
-  "scope": "./",
+  "start_url": "/interval-timer-pwa/",
+  "scope": "/interval-timer-pwa/",
   "display": "standalone",
   "background_color": "#0b1220",
   "theme_color": "#0b1220",
   "icons": [
-    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
-    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png" }
+    {
+      "src": "/interval-timer-pwa/icons/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/interval-timer-pwa/icons/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
   ],
   "lang": "fr",
   "orientation": "portrait-primary",
-  "categories": ["health","sports","utilities"]
+  "categories": ["health", "sports", "utilities"]
 }
+
