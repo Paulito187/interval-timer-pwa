@@ -79,3 +79,12 @@ Ouvre l’URL dans Chrome → menu ⋮ → **Installer l’application**.
 
 ## Mise à jour (cache PWA)
 Si tu ne vois pas les changements : désinstalle l’app, puis efface le stockage du site (cadenas → Paramètres du site → Stockage → Effacer), recharge et réinstalle.
+
+## Installation sur Android (Chrome) — note importante
+Selon la version de Chrome, le menu peut afficher **“Ajouter à l’écran d’accueil”** au lieu de **“Installer”**.
+Cette version inclut aussi un bouton **Installer l’application** qui apparaît seulement si Chrome autorise l’installation (événement `beforeinstallprompt`).
+
+Si tu as déjà une ancienne version :
+1) Supprime l’icône installée
+2) Chrome → Paramètres du site → Stockage → Effacer
+3) Recharge l’URL, attends 10s, puis installe.

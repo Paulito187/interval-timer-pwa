@@ -1,5 +1,5 @@
 /* Interval Timer PWA - GitHub Pages installable SW */
-const CACHE='interval-timer-github-v1';
+const CACHE='interval-timer-github-v2';
 const ASSETS=[
   "./",
   "./index.html",

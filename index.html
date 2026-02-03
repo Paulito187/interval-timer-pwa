@@ -108,7 +108,19 @@
         <button id="stopBtn" class="btn danger" type="button">Retour aux paramètres</button>
       </div>
     </section>
-  </main>
+  
+      <section class="card" id="installCard" aria-label="Installation" style="margin-top:14px">
+        <div class="row" style="justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap">
+          <div>
+            <div class="label">Installation</div>
+            <div class="hint" id="installHint">Si Chrome le permet, tu pourras installer l’app (plein écran, hors navigateur).</div>
+          </div>
+          <button class="btn" id="installBtn" type="button" hidden>Installer l’application</button>
+        </div>
+        <div class="hint" id="installDiag" style="margin-top:10px;display:none"></div>
+      </section>
+
+</main>
 
   <script src="app.js"></script>
   <script>

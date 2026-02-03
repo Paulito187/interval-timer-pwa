@@ -600,3 +600,80 @@ ui.skipBtn.hidden = true;
   computePlannedTotal();
   renderSessionClock();
 })();
+/* --- Installation PWA (GitHub Pages) ---
+   Sur certains Android/Chrome, le menu n'affiche pas "Installer".
+   Cette logique affiche un bouton uniquement si Chrome déclenche beforeinstallprompt.
+*/
+(function(){
+  const installBtn = document.getElementById('installBtn');
+  const installHint = document.getElementById('installHint');
+  const installDiag = document.getElementById('installDiag');
+  if (!installBtn || !installHint) return;
+
+  let deferredPrompt = null;
+
+  function setDiag(msg){
+    if (!installDiag) return;
+    installDiag.style.display = 'block';
+    installDiag.textContent = msg;
+  }
+
+  // Affiche le mode d'affichage (utile pour savoir si c'est une vraie PWA)
+  const isStandalone = window.matchMedia && window.matchMedia('(display-mode: standalone)').matches;
+  if (isStandalone){
+    installHint.textContent = "App installée (mode plein écran).";
+  }
+
+  window.addEventListener('beforeinstallprompt', (e) => {
+    e.preventDefault();
+    deferredPrompt = e;
+    installBtn.hidden = false;
+    installHint.textContent = "App prête à être installée.";
+  });
+
+  installBtn.addEventListener('click', async () => {
+    if (!deferredPrompt) return;
+    deferredPrompt.prompt();
+    const choice = await deferredPrompt.userChoice;
+    deferredPrompt = null;
+    installBtn.hidden = true;
+    installHint.textContent = (choice && choice.outcome === 'accepted')
+      ? "Installation lancée. Si besoin, cherche l'app dans tes applications."
+      : "Installation annulée.";
+  });
+
+  // Diagnostics légers (ne prouve pas l'installabilité, mais aide à voir ce qui manque)
+  (async () => {
+    try {
+      // service worker
+      if ('serviceWorker' in navigator) {
+        const reg = await navigator.serviceWorker.getRegistration();
+        if (!reg || (!reg.active && !reg.installing && !reg.waiting)) {
+          setDiag("Diagnostic: Service worker non actif (attends quelques secondes puis recharge).");
+          return;
+        }
+      } else {
+        setDiag("Diagnostic: Service worker non supporté sur ce navigateur.");
+        return;
+      }
+
+      // manifest + icons reachability
+      const base = location.origin + location.pathname.replace(/[^/]*$/, '');
+      const manUrl = base + "manifest.webmanifest";
+      const mr = await fetch(manUrl, {cache:'no-store'});
+      if (!mr.ok) { setDiag("Diagnostic: manifest introuvable (" + mr.status + ")."); return; }
+      const m = await mr.json();
+      const icon = (m.icons && m.icons[0] && m.icons[0].src) ? m.icons[0].src : null;
+      if (icon) {
+        const iconUrl = icon.startsWith('http') ? icon : (icon.startsWith('/') ? (location.origin + icon) : (base + icon));
+        const ir = await fetch(iconUrl, {cache:'no-store'});
+        if (!ir.ok) { setDiag("Diagnostic: icône introuvable (" + ir.status + ")."); return; }
+      }
+
+      // If we are here, basics look OK. If button still not shown, it's usually Chrome heuristics (visites).
+      setDiag("Diagnostic: OK (manifest + icônes + service worker). Si le bouton Installer n'apparaît pas, visite la page 2 fois et attends 10s, puis réessaie.");
+    } catch (err) {
+      setDiag("Diagnostic: erreur (" + (err && err.message ? err.message : err) + ")");
+    }
+  })();
+})();
