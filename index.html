@@ -1,0 +1,115 @@
+<!doctype html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#0b1220">
+  <title>Interval Timer</title>
+  <link rel="manifest" href="manifest.webmanifest">
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <header class="topbar">
+    <div class="brand">
+      <div class="logo" aria-hidden="true">⏱️</div>
+      <div>
+        <div class="title">Interval Timer</div>
+        <div class="subtitle" id="wakeHint" hidden>Wake Lock indisponible</div>
+      </div>
+    </div>
+  </header>
+
+  <main class="wrap">
+    <section id="setup" class="card" aria-label="Paramètres">
+      <h2>Paramètres</h2>
+
+      <div class="grid">
+<label class="toggle span2">
+          <input id="warmupOn" type="checkbox">
+          <span>Échauffement</span>
+        </label>
+
+        <label class="field"><span>Travail (s)</span>
+          <input id="work" type="number" min="1" step="1" inputmode="numeric" required>
+        </label>
+
+        <label class="field"><span>Pause (s)</span>
+          <input id="rest" type="number" min="0" step="1" inputmode="numeric">
+        </label>
+
+        <label class="field"><span>Séries</span>
+          <input id="rounds" type="number" min="1" step="1" inputmode="numeric" required> <label class="infWrap"><input id="roundsInf" type="checkbox"> <span>Infini</span></label>
+        </label>
+<label class="field"><span>Compte à rebours départ (3–10s)</span>
+          <input id="countdown" type="number" min="3" max="10" step="1" inputmode="numeric">
+        </label>
+
+        <label class="toggle span2">
+          <input id="beepOn" type="checkbox" checked>
+          <span>Bips</span>
+        </label>
+<label class="toggle span2">
+          <input id="count321" type="checkbox" checked>
+          <span>Alerte 3..2..1 avant changement</span>
+        </label>
+      </div>
+
+      <div class="planned" aria-label="Temps total programmé">
+  <div class="k">Temps total programmé</div>
+  <div class="v" id="plannedTotal">—</div>
+</div>
+
+<div id="errors" class="errors" role="alert" aria-live="polite" hidden></div>
+
+      <button id="startBtn" class="btn primary" type="button">Démarrer</button>
+</section>
+
+    <section id="timer" class="card stage" hidden aria-label="Timer">
+      <div class="sessionClock" aria-label="Chrono de session">
+        <div class="k">Chrono</div>
+        <div class="v" id="sessionClock">00:00</div>
+      </div>
+      <div class="stageTop">
+        <div id="state" class="pill">PRÊT</div>
+        <div id="roundInfo" class="pill muted">—</div>
+      </div>
+
+      <div id="time" class="big">00:00</div>
+
+      <div class="progress" aria-label="Progression">
+        <div id="bar"></div>
+      </div>
+
+      <div class="totals" aria-label="Chrono total">
+        <div class="tbox">
+          <div class="k">Total</div>
+          <div class="v" id="totalPlanned">—</div>
+        </div>
+        <div class="tbox">
+          <div class="k">Restant</div>
+          <div class="v" id="totalRemaining">—</div>
+        </div>
+      </div>
+
+          <div class="v" id="totalRemaining">—</div>
+        </div>
+      </div>
+
+      <div id="banner" class="banner" role="status" aria-live="polite" hidden></div>
+      <div id="recap" class="recap" hidden aria-label="Récapitulatif"></div>
+
+      <div class="controls">
+        <button id="toggleBtn" class="btn secondary" type="button" hidden aria-label="Pause ou reprendre">⏯ Pause / reprendre</button>
+        <button id="endBtn" class="btn primary" type="button" hidden>Terminer</button>
+        <button id="newSessionBtn" class="btn secondary" type="button" hidden>Nouvelle séance</button>
+        <button id="beginWorkoutBtn" class="btn primary" type="button" hidden>Commencer la séance</button>
+<button id="skipBtn" class="btn secondary" type="button">Suivant</button>
+        <button id="endNowBtn" class="btn primary" type="button" hidden>Terminer</button>
+        <button id="stopBtn" class="btn danger" type="button">Retour aux paramètres</button>
+      </div>
+    </section>
+  </main>
+
+  <script src="app.js"></script>
+</body>
+</html>
