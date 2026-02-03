@@ -20,6 +20,9 @@
   ],
   "lang": "fr",
   "orientation": "portrait-primary",
-  "categories": ["health", "sports", "utilities"]
+  "categories": [
+    "health",
+    "sports",
+    "utilities"
+  ]
 }
-

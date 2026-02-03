@@ -66,3 +66,16 @@ Si tu avais installé/visité une ancienne version, fais : Chrome → Paramètre
 ## v1.1.2
 - Retour du bouton « Pause/Reprendre » pendant les intervalles uniquement
 - Toujours absent pendant l’échauffement et après « Terminer »
+
+# Déploiement GitHub Pages (important)
+
+Cette version est déjà configurée pour le repo **interval-timer-pwa** (chemins `start_url` et `scope`).
+1) Uploade tous les fichiers **à la racine** du repo GitHub.
+2) Settings → Pages → Deploy from branch → main / (root)
+3) URL: https://paulito187.github.io/interval-timer-pwa/
+
+## Installation Android
+Ouvre l’URL dans Chrome → menu ⋮ → **Installer l’application**.
+
+## Mise à jour (cache PWA)
+Si tu ne vois pas les changements : désinstalle l’app, puis efface le stockage du site (cadenas → Paramètres du site → Stockage → Effacer), recharge et réinstalle.
