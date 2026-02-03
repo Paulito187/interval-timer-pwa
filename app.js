@@ -354,24 +354,30 @@
     ui.endBtn.hidden = true;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = false;
+    ui.toggleBtn.hidden = true;
+    ui.toggleBtn.style.display = 'none';
   }
   function showRunningControls(){
     ui.beginWorkoutBtn.hidden = true;
-    ui.toggleBtn.hidden = false;
+    ui.toggleBtn.hidden = true;
     ui.skipBtn.hidden = false;
     ui.stopBtn.hidden = false;
     ui.endBtn.hidden = true;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = false;
+    ui.toggleBtn.hidden = true;
+    ui.toggleBtn.style.display = 'none';
   }
   function showFinishControls(){
     ui.beginWorkoutBtn.hidden = true;
-    ui.toggleBtn.hidden = false;
+    ui.toggleBtn.hidden = true;
     ui.skipBtn.hidden = true;
     ui.stopBtn.hidden = true;
     ui.endBtn.hidden = false;
     ui.newSessionBtn.hidden = true;
     ui.endNowBtn.hidden = true;
+    ui.toggleBtn.hidden = true;
+    ui.toggleBtn.style.display = 'none';
   }
   function showRecapOnly(){
     ui.beginWorkoutBtn.hidden = true;
@@ -381,6 +387,8 @@
     ui.endBtn.hidden = true;
     ui.newSessionBtn.hidden = false;
     ui.endNowBtn.hidden = true;
+    ui.toggleBtn.hidden = true;
+    ui.toggleBtn.style.display = 'none';
   }
 
   // --- Actions
@@ -537,21 +545,33 @@
   }
 
   function endWorkout(){
+    // v1.1.1: Terminer = arrêt complet (chrono principal + intervalles)
+    try{ cancelAnimationFrame(engine.raf); }catch(e){}
+    engine.raf = 0;
+    engine.status = 'finished';
+    releaseWakeLock();
+
+    // stoppe le chrono principal
     stopSessionClock();
 
-    // après Terminer, on enlève le bouton play/pause
-    ui.toggleBtn.hidden = true;
+    // Force l'affichage final côté intervalle
+    try{
+      setStage('TERMINÉ', '—');
+      ui.time.textContent = '00:00';
+      ui.bar.style.width = '100%';
+      updateTotals();
+    }catch(e){}
 
-    const c = getConfig();
-    const warmup = session.warmupMs;
-    const rounds = Math.min(c.series, session.roundsDone || c.series);
+    // Affiche le récap + bouton Nouvelle séance uniquement
+    const warmup = session.status === 'warmup' ? session.elapsedMs : (session.warmupMs || 0);
+    const roundsDone = session.roundsDone || 0;
     const total = session.elapsedMs;
 
     ui.recap.hidden = false;
     ui.recap.innerHTML = `
       <h3>Récapitulatif</h3>
       <div class="line"><div class="k">Temps échauffement</div><div class="v">${fmtMs(warmup)}</div></div>
-      <div class="line"><div class="k">Séries effectuées</div><div class="v">${rounds}/${c.series}</div></div>
+      <div class="line"><div class="k">Séries effectuées</div><div class="v">${roundsDone}</div></div>
       <div class="line"><div class="k">Temps total</div><div class="v">${fmtMs(total)}</div></div>
     `;
 

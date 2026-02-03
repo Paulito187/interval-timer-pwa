@@ -56,3 +56,8 @@ Si tu avais installé/visité une ancienne version, fais : Chrome → Paramètre
 ## v1.1
 - Stop → « Retour aux paramètres » (même action)
 - Ajout du bouton « Terminer » pendant la séance (arrête et affiche le récap)
+
+
+## v1.1.1
+- « Terminer » arrête aussi les intervalles et le chrono général
+- Suppression du bouton « Pause / Reprendre » pendant l'entraînement et après « Terminer »
